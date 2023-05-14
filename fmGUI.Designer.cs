@@ -38,6 +38,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_Power = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,8 +64,8 @@
             // 
             // btn_Refresh
             // 
-            this.btn_Refresh.Location = new System.Drawing.Point(209, 54);
-            this.btn_Refresh.Margin = new System.Windows.Forms.Padding(200, 10, 200, 3);
+            this.btn_Refresh.Location = new System.Drawing.Point(109, 54);
+            this.btn_Refresh.Margin = new System.Windows.Forms.Padding(100, 10, 100, 3);
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.Size = new System.Drawing.Size(166, 32);
             this.btn_Refresh.TabIndex = 2;
@@ -97,7 +98,7 @@
             this.button6.Tag = "DVI_1";
             this.button6.Text = "DVI_1";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.InputSwitch_Click);
+            this.button6.Click += new System.EventHandler(this.SendMessage);
             // 
             // button5
             // 
@@ -109,7 +110,7 @@
             this.button5.Tag = "VGA_1";
             this.button5.Text = "VGA_1";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.InputSwitch_Click);
+            this.button5.Click += new System.EventHandler(this.SendMessage);
             // 
             // button4
             // 
@@ -121,7 +122,7 @@
             this.button4.Tag = "DisplayPort_2";
             this.button4.Text = "DP_2";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.InputSwitch_Click);
+            this.button4.Click += new System.EventHandler(this.SendMessage);
             // 
             // button3
             // 
@@ -133,7 +134,7 @@
             this.button3.Tag = "DisplayPort_1";
             this.button3.Text = "DP_1";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.InputSwitch_Click);
+            this.button3.Click += new System.EventHandler(this.SendMessage);
             // 
             // button2
             // 
@@ -145,7 +146,7 @@
             this.button2.Tag = "HDMI_2";
             this.button2.Text = "HDMI_2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.InputSwitch_Click);
+            this.button2.Click += new System.EventHandler(this.SendMessage);
             // 
             // button1
             // 
@@ -157,13 +158,26 @@
             this.button1.Tag = "HDMI_1";
             this.button1.Text = "HDMI_1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.InputSwitch_Click);
+            this.button1.Click += new System.EventHandler(this.SendMessage);
+            // 
+            // btn_Power
+            // 
+            this.btn_Power.Location = new System.Drawing.Point(309, 54);
+            this.btn_Power.Margin = new System.Windows.Forms.Padding(100, 10, 100, 3);
+            this.btn_Power.Name = "btn_Power";
+            this.btn_Power.Size = new System.Drawing.Size(166, 32);
+            this.btn_Power.TabIndex = 4;
+            this.btn_Power.Tag = "PowerSwitch";
+            this.btn_Power.Text = "Power On/Off";
+            this.btn_Power.UseVisualStyleBackColor = true;
+            this.btn_Power.Click += new System.EventHandler(this.SendMessage);
             // 
             // fmGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 201);
+            this.Controls.Add(this.btn_Power);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_Refresh);
             this.Controls.Add(this.cb_Displays);
@@ -193,6 +207,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btn_Power;
     }
 }
 

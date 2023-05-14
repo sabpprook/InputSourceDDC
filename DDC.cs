@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -134,6 +135,17 @@ namespace InputSourceDDC
             }, 0);
         }
 
+        private static void PowerSwitch(IntPtr hPhysicalMonitor)
+        {
+            GetVCPFeatureAndVCPFeatureReply(hPhysicalMonitor, (byte)VCPCodeEnum.PowerMode, out IntPtr pvct, out uint dwPowerMode, out uint pdwMaximumValue);
+            var PowerMode = (PowerModeEnum)dwPowerMode;
+
+            var mode = PowerMode != PowerModeEnum.Off ? PowerModeEnum.OffButton : PowerModeEnum.On;
+
+            SetVCPFeature(hPhysicalMonitor, (byte)VCPCodeEnum.PowerMode, (uint)mode);
+            DestroyPhysicalMonitor(hPhysicalMonitor);
+        }
+
         private static void SourceSwitch(IntPtr hPhysicalMonitor, InputSelectEnum source)
         {
             SetVCPFeature(hPhysicalMonitor, (byte)VCPCodeEnum.InputSelect, (uint)source);
@@ -144,6 +156,9 @@ namespace InputSourceDDC
         {
             switch (message)
             {
+                case "PowerSwitch":
+                    PowerSwitch(monitor.handle);
+                    break;
                 case "DisplayPort_1":
                     SourceSwitch(monitor.handle, InputSelectEnum.DisplayPort_1);
                     break;

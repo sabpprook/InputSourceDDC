@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,11 +31,20 @@ namespace InputSourceDDC
             cb_Displays.SelectedIndex = 0;
         }
 
-        private void InputSwitch_Click(object sender, EventArgs e)
+        private async void SendMessage(object sender, EventArgs e)
         {
-            var message = (sender as Button).Tag.ToString();
+            var button = (sender as Button);
+            var message = button.Tag.ToString();
+
+            button.Enabled = groupBox1.Enabled = false;
+
             var monitor = cb_Displays.SelectedItem as DDC.Monitor;
             DDC.ProcessMessage(monitor, message);
+
+            await Task.Delay(3000);
+            btn_Refresh.PerformClick();
+
+            button.Enabled = groupBox1.Enabled = true;
         }
     }
 }
