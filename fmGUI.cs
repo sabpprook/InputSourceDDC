@@ -25,10 +25,22 @@ namespace InputSourceDDC
 
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
+            var id = string.Empty;
+            if (cb_Displays.SelectedIndex >= 0)
+            {
+                id = (cb_Displays.SelectedItem as DDC.Monitor).id;
+            }
+
             DDC.Refresh();
             cb_Displays.Items.Clear();
             cb_Displays.Items.AddRange(DDC.Monitors.ToArray());
             cb_Displays.SelectedIndex = 0;
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                var match = DDC.Monitors.FirstOrDefault(x => x.id == id);
+                cb_Displays.SelectedItem = match;
+            }
         }
 
         private async void SendMessage(object sender, EventArgs e)
@@ -41,7 +53,7 @@ namespace InputSourceDDC
             var monitor = cb_Displays.SelectedItem as DDC.Monitor;
             DDC.ProcessMessage(monitor, message);
 
-            await Task.Delay(3000);
+            await Task.Delay(2000);
             btn_Refresh.PerformClick();
 
             button.Enabled = groupBox1.Enabled = true;

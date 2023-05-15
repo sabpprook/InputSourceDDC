@@ -1,10 +1,6 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InputSourceDDC
 {
@@ -94,6 +90,7 @@ namespace InputSourceDDC
         {
             public IntPtr handle;
             public string name;
+            public string id;
 
             public override string ToString()
             {
@@ -127,7 +124,8 @@ namespace InputSourceDDC
                     Monitors.Add(new Monitor
                     {
                         handle = physicalMonitors[i].hPhysicalMonitor,
-                        name = $"{displayString} - {device.DeviceString} ({device.DeviceName})"
+                        name = $"{displayString} - {device.DeviceString} ({device.DeviceName})",
+                        id = device.DeviceID
                     });
                 }
 
